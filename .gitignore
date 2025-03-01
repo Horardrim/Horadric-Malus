@@ -32,3 +32,6 @@
 *.app
 
 output/
+
+#VS Code
+settings.json
