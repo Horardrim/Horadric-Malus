@@ -15,6 +15,10 @@ long double operator"" _deg(long double deg)
 
 int main(int argc, char ** argv)
 {
+    std::cout << "current cplusplus standard is:" << std::endl;
+    std::cout << __cplusplus << std::endl;
+    std::cout << std::endl;
+
     /*
      * I. auto key word
      */
@@ -123,11 +127,11 @@ int main(int argc, char ** argv)
     std::cout << std::endl;
 
     /*
-     * XI. std::bind、std::make_shared、std::make_unique
+     * XI. std::bind、std::make_shared
      */
     auto sp = std::make_shared<int>(10);
-    auto up = std::make_unique<int>(20);
-    std::cout << *sp << " " << *up << std::endl;
+    
+    std::cout << *sp << " " << std::endl;
 
     /*
      * XII. std::unordered_map
