@@ -1,4 +1,4 @@
-TARGET = array_params_cxx
+TARGET = cpp11_cxx
 BUILD_OUTPUT_DIR = ./output
 
 SRC := $(wildcard ./*.cxx)
