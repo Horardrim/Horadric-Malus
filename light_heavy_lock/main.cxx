@@ -15,7 +15,7 @@ void worker(LightweightLock& light_lock, HeavyweightLock& heavy_lock, int id) {
         light_lock.lock();
         if (light_lock.is_locked()) {
             std::ostringstream oss;
-            oss << "Thread " << id << " acquired lightweight lock.\n";
+            oss << "Thread " << id << " acquired lightweight lock " << &light_lock << "\n";
             std::cout << oss.str();
             std::this_thread::sleep_for(std::chrono::milliseconds(10000));
             light_lock.unlock();

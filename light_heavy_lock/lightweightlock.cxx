@@ -15,15 +15,13 @@ LightweightLock::~LightweightLock()
 
 void LightweightLock::lock()
 {
-    std::unique_lock<std::mutex> lock(mtx, std::defer_lock);
-    if (lock.try_lock()) {
+    // std::unique_lock<std::mutex> lock(mtx, std::defer_lock);
+    if (mtx.try_lock()) {
         std::ostringstream oss;
-        oss <<  "get lock ok\n";
         std::cout << oss.str();
         lock_acquired.store(true, std::memory_order_release);
     } else {
         std::ostringstream oss;
-        oss <<  "get lock not ok\n";
         std::cout << oss.str();
         lock_acquired.store(false, std::memory_order_release);
     }
