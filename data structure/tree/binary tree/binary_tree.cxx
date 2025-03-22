@@ -92,6 +92,11 @@ bool BinaryTree::_isBST(
     const BinaryTreeNode * const current,
     const BinaryTreeNode * const rightParent) const
 {
+    if (current == nullptr)
+    {
+        return true;
+    }
+
     if (leftParent != nullptr && current->_data <= leftParent->_data)
     {
         return false;
@@ -100,11 +105,6 @@ bool BinaryTree::_isBST(
     if (rightParent != nullptr && current->_data >= rightParent->_data)
     {
         return false;
-    }
-
-    if (current == nullptr)
-    {
-        return true;
     }
 
     return _isBST(leftParent, current->_left, current) && _isBST(current, current->_right, rightParent);

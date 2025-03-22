@@ -59,5 +59,8 @@ int main(int argc, char ** argv)
     // 测试其中一个节点是root节点，公共的祖先节点也是root
     const BinaryTreeNode * ancestorI = treeI.lowestCommonAcestor(treeI.root(), left, treeI.root());
     assert(ancestorI == treeI.root());
+
+    verifyNoneBST();
+    verifyBST();
     return 0;
 }
