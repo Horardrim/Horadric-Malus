@@ -1,3 +1,5 @@
+#include <list>
+
 #include "binary_tree.hxx"
 
 BinaryTreeNode::BinaryTreeNode() :
@@ -20,6 +22,35 @@ BinaryTree::BinaryTree() :
     _root(nullptr)
 {
 
+}
+
+BinaryTree::~BinaryTree()
+{
+    if (_root == nullptr)
+    {
+        return;
+    }
+    std::list<BinaryTreeNode*> stack;
+    stack.push_back(_root);
+    while(!stack.empty())
+    {
+        BinaryTreeNode * node = stack.front();
+        stack.pop_front();
+        if (node->_left != nullptr)
+        {
+            stack.push_back(node->_left);
+        }
+
+        if (node->_right != nullptr)
+        {
+            stack.push_back(node->_right);
+        }
+
+        node->_left = nullptr;
+        node->_right = nullptr;
+        delete node;
+        node = nullptr;
+    }
 }
 
 BinaryTree::BinaryTree(const int & rootData) :
@@ -49,4 +80,32 @@ const BinaryTreeNode * const BinaryTree::lowestCommonAcestor(const BinaryTreeNod
     }
 
     return rightChild;
+}
+
+bool BinaryTree::isBST() const
+{
+    return _isBST(nullptr, _root->_left, _root) && _isBST(_root, _root->_right, nullptr);
+}
+
+bool BinaryTree::_isBST(
+    const BinaryTreeNode * const leftParent,
+    const BinaryTreeNode * const current,
+    const BinaryTreeNode * const rightParent) const
+{
+    if (leftParent != nullptr && current->_data <= leftParent->_data)
+    {
+        return false;
+    }
+
+    if (rightParent != nullptr && current->_data >= rightParent->_data)
+    {
+        return false;
+    }
+
+    if (current == nullptr)
+    {
+        return true;
+    }
+
+    return _isBST(leftParent, current->_left, current) && _isBST(current, current->_right, rightParent);
 }

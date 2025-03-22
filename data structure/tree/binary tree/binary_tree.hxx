@@ -36,6 +36,7 @@ class BinaryTree
 public:
     BinaryTree(const int & rootData);
     BinaryTree();
+    ~BinaryTree();
 
     inline BinaryTreeNode * root() const
     {
@@ -46,6 +47,13 @@ public:
     {
         return _root == nullptr;
     }
+
+    bool isBST() const;
+
+    bool _isBST(
+        const BinaryTreeNode * const leftParent,
+        const BinaryTreeNode * const current,
+        const BinaryTreeNode * const rightParent) const;
 
     const BinaryTreeNode * const lowestCommonAcestor(
         const BinaryTreeNode * const parent,
