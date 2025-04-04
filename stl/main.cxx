@@ -5,6 +5,8 @@
 #include <memory>
 #include <cmath>
 
+#include "_vector.hxx"
+
 template <class Iterator>
 struct iterator_traits {
     typedef typename Iterator::iterator_category iterator_category;
@@ -55,6 +57,7 @@ int main(int argc, char ** argv)
 
     std::cout << "page size: " << getpagesize() << std::endl;
 
+    stl_vector_usageI();
 
     return 0;
 }
