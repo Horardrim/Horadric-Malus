@@ -14,6 +14,10 @@ public:
     Bar & operator=(const Bar & other);
     Bar & operator=(Bar && other) noexcept;
     ~Bar();
+
+    inline int * data() const
+    {  return _data;  }
+
 private:
     int * _data;
 };

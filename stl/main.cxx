@@ -7,6 +7,7 @@
 
 #include "_vector.hxx"
 #include "_hashtable.hxx"
+#include "_list.hxx"
 
 template <class Iterator>
 struct iterator_traits {
@@ -58,8 +59,8 @@ int main(int argc, char ** argv)
 
     std::cout << "page size: " << getpagesize() << std::endl;
 
-    //stl_vector_usageI();
-    stl_unordered_map_usageI();
+    // stl_vector_usageI();
+    // stl_unordered_map_usageI();
 
 
 
