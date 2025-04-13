@@ -12,11 +12,10 @@ void stl_unordered_map_usageI()
     Bar x;
     hashtable[10] = x;
 
-    // Bar()为右值，在插入时会调用转移构造函数
+    // insert函数中为了确保std::pair为一个右值会调用std::move, 因此会调用Bar的转移构造函数
     hashtable.insert({14, Bar()});
 
-    // 首先创建pair，此时y作为参数进栈并调用Bar的拷贝构造函数，
-    // 然后pair实例会被std::move转换为右值，随后调用Bar的转移构造函数
+    // 同上
     Bar y;
     hashtable.insert({15, y});
 }
