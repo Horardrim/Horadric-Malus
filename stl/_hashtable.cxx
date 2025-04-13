@@ -1,4 +1,5 @@
 #include <unordered_map>
+#include <iostream>
 
 #include "_hashtable.hxx"
 #include "bar.hxx"
@@ -18,4 +19,9 @@ void stl_unordered_map_usageI()
     // 同上
     Bar y;
     hashtable.insert({15, y});
+
+    std::cout << "===================" << std::endl;
+    // emplace函数接受可变参数，并使用 std::forward 进行完美转发
+    hashtable.emplace(12, Bar());
+    hashtable.emplace(13, y);
 }
