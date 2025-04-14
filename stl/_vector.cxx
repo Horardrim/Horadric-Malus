@@ -27,6 +27,10 @@ void stl_vector_usageI()
 
     // 调用了默认构造函数，同时触发了扩容
     vecI.emplace(vecI.end());
+
+    std::cout << "move backward" << std::endl;
+    std::move_backward(vecI.begin(), vecI.end() - 1, vecI.end());
     // operator[]获取vector元素
     std::cout << vecI[0].data() << std::endl;
+    std::cout << vecI[1].data() << std::endl;
 }
