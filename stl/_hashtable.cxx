@@ -16,7 +16,7 @@ void stl_unordered_map_usageI()
     // insert函数中为了确保std::pair为一个右值会调用std::move, 因此会调用Bar的转移构造函数
     hashtable.insert({14, Bar()});
 
-    // 同上
+    // y为左值，构造pair时调用一次拷贝构造函数，insert时调用一次转移构造函数
     Bar y;
     hashtable.insert({15, y});
 
