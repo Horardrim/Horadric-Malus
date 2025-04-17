@@ -1,6 +1,9 @@
 #include <sstream>
 
 #include "consistenthashing.hxx"
+#include "lrucache.hxx"
+#include "lfucache.hxx"
+#include "expiringcache.hxx"
 
 
 int main(int argc, char ** argv)

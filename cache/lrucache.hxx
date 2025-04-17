@@ -3,7 +3,7 @@
 
 class LRUCache {
 public:
-    LRUCache(int capacity) : capacity(capacity) {}
+    LRUCache(size_t capacity) : capacity(capacity) {}
 
     int get(int key) {
         if (cache.find(key) == cache.end()) return -1;
@@ -29,7 +29,7 @@ public:
     }
 
 private:
-    int capacity;
+    size_t capacity;
     std::unordered_map<int, std::pair<int, std::list<int>::iterator>> cache;
     std::list<int> lru;
 };
