@@ -60,7 +60,7 @@ Buffer& Buffer::operator=(Buffer&& other) noexcept
     return *this;
 }
 
-#else
+#endif
 
 Buffer::Buffer(Buffer& other) :
     size(0),
@@ -76,5 +76,3 @@ Buffer& Buffer::operator=(Buffer& other)
     }
     return *this;
 }
-
- #endif

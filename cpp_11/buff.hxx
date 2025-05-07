@@ -41,13 +41,12 @@ class Buffer {
     
         // 移动赋值运算符
         Buffer& operator=(Buffer&& other) noexcept;
-    #else
+    #endif
         // 模拟移动构造函数
         Buffer(Buffer& other);
     
         // 模拟移动赋值运算符
-        Buffer& operator=(Buffer& other);
-     #endif
+        Buffer& operator=(Buffer& other); 
 };
 
 #endif
