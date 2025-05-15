@@ -139,5 +139,13 @@ int main(int argc, char ** argv)
      */
     std::unordered_map<int, std::string> umap = {{1, "one"}, {2, "two"}};
     std::cout << umap[1] << std::endl;  // 输出 one
+
+    /*
+     * XIII. decltype
+     * decltype can get a type of a variable and keep refer and const which 'auto' will not keep
+     * int& ref = a;
+     * decltype(ref) c = a;  // type of c is int&
+     */
+
     return 0;
 }

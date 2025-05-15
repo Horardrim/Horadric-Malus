@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <cmath>
+#include <iomanip>
 
 #include "finalclass.hxx"
 
@@ -16,6 +17,18 @@ constexpr T * null_ptr = nullptr;
 constexpr int square(int x)
 {
     return x * x;
+}
+
+/*
+ * 另外一种写法
+ * template <typename T, typename U>
+ * decltype(T() + U()) add(T t, U u) {
+ *     return t + u;
+ * }
+ */
+template <typename T, typename U>
+decltype(auto) add(T t, U u) {
+    return t + u;
 }
 
 int main(int argc, char ** argv)
@@ -69,5 +82,12 @@ int main(int argc, char ** argv)
     std::cout << *up << std::endl;
 
     std::cout << std::hypot(12.0, 5.0) << std::endl;
+
+    /*
+     * decltype(auto)
+     *
+     */
+    std::cout << "decltype(auto) example: " << add(1, 2) << std::endl;
+    std::cout << "decltype(auto) example: " << std::fixed << std::setprecision(2) << add(1.00, 2.0) << std::endl;
     return 0;
 }
