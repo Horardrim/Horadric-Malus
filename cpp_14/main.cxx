@@ -44,6 +44,7 @@ int main(int argc, char ** argv)
     /*
      * constexpr
      * the variable/function which is decorated by constexpr shall be calculated at compiling time
+     * if constexpr is added before a constructor means that all members of the class shall be constexpr.
      */
     // right
     constexpr int size = 10; (void) size;
