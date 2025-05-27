@@ -7,6 +7,7 @@
 #include <functional>
 #include <unordered_map>
 #include <memory>
+#include <future>
 
 long double operator"" _deg(long double deg)
 {
@@ -146,6 +147,52 @@ int main(int argc, char ** argv)
      * int& ref = a;
      * decltype(ref) c = a;  // type of c is int&
      */
+
+    /*
+     * XIV. std::future
+     * std::future可以通过std::promise，std::async，std::packaged_task启动
+     */
+
+    auto async_task = [](int a, int b) -> int {
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+        return a + b;
+    };
+
+    /** std::async启动任务 **/
+
+    // 启动异步任务
+    std::future<int> result = std::async(std::launch::async, async_task, 5, 6);
+
+    // 执行其他操作
+    std::cout << "Waiting for result..." << std::endl;
+
+    // 阻塞当前线程，直到异步任务的结果返回
+    int task_result = result.get();
+    std::cout << "Result: " << task_result << std::endl;
+
+
+    /** std::promise **/
+    auto promise = [](std::promise<int> prom, int a, int b) -> void {
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+        prom.set_value(a + b);
+    };
+
+    // 创建一个 promise 对象
+    std::promise<int> prom;
+    // 获取与 promise 关联的 future
+    std::future<int> prom_result = prom.get_future();
+
+    // 启动一个线程来执行异步任务
+    std::thread t2(promise, std::move(prom), 4, 5);
+    // 执行其他操作
+    std::cout << "Waiting for promise result..." << std::endl;
+
+    // 获取异步任务的结果
+    int promise_val = prom_result.get();
+    std::cout << "Promise Result: " << promise_val << std::endl;
+
+    // 调用join确保线程被回收
+    t2.join();
 
     return 0;
 }
