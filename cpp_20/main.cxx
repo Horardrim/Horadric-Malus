@@ -30,6 +30,12 @@ public:
     {  return 10; }
 };
 
+class Bar_
+{
+public:
+    Bar_() = default;
+};
+
 /* 
  * 一个自定义requires的子句 
  * T中必须有一个int value()成员函数
@@ -51,5 +57,6 @@ int main(int argc, char ** argv)
     add_(1, 2);
 
     print_value(Bar()); // can pass compiling and output 10
+    // print_value(Bar_()); // can not pass compiling
     return 0;
 }
