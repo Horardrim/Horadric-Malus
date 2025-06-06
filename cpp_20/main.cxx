@@ -36,6 +36,13 @@ public:
     Bar_() = default;
 };
 
+class Bar__
+{
+public:
+    Bar__() = default;
+    int value;
+};
+
 /* 
  * 一个自定义requires的子句 
  * T中必须有一个int value()成员函数
@@ -45,6 +52,18 @@ requires requires(T t) { { t.value() } -> std::same_as<int>; }
 void print_value(T t) {
     std::cout << "Value: " << t.value() << std::endl;
 }
+
+
+template <typename>
+struct void_type {
+    typedef void type;
+};
+
+template <typename T, typename = void>
+struct has_value_function : std::false_type {};
+
+template <typename T>
+struct has_value_function<T, typename void_type<decltype(&T::value)>::type> : std::true_type {};
 
 int main(int argc, char ** argv)
 {
@@ -58,5 +77,12 @@ int main(int argc, char ** argv)
 
     print_value(Bar()); // can pass compiling and output 10
     // print_value(Bar_()); // can not pass compiling
+
+    /*
+     * SFINAE机制
+     */
+    std::cout << "Bar has value member: " << has_value_function<Bar>::value << std::endl;
+    std::cout << "Bar_ has not value member: " << has_value_function<Bar_>::value << std::endl;
+    std::cout << "Bar__ has value function: " << has_value_function<Bar__>::value << std::endl;
     return 0;
 }
