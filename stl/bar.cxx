@@ -35,6 +35,7 @@ Bar & Bar::operator=(Bar && other) noexcept
 {
     if (this != &other)
     {
+        delete _data;
         _data = other._data;
         other._data = nullptr;
     }
@@ -43,7 +44,7 @@ Bar & Bar::operator=(Bar && other) noexcept
 
 Bar::~Bar()
 {
-    if (_data == nullptr)
+    if (_data != nullptr)
     {
         delete _data;
         _data = nullptr;
