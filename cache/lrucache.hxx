@@ -29,7 +29,9 @@ public:
     }
 
 private:
-    size_t capacity;
+    const size_t capacity;
+    // 缓存的键值对K为键值，V为缓存的值和迭代器组成的pair
     std::unordered_map<int, std::pair<int, std::list<int>::iterator>> cache;
+    // 最近最少使用的键的列表，保存的是键值
     std::list<int> lru;
 };
